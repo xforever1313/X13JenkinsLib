@@ -62,7 +62,7 @@ void call( Map args )
 
     httpRequest(
         consoleLogResponseBody: true,
-        contentType: "APPLICATION_JSON",
+        contentType: "APPLICATION_JSON_UTF8",
         httpMode: "POST",
         ignoreSslErrors: true,
         requestBody: content,
