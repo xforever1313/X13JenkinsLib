@@ -15,7 +15,7 @@ All functions in the "vars" are prefixed with "X13" so it is obvious which libra
 What does X13 mean?
 --------
 
-Yes, its the first and last two characters of my username xforever1313.
+Its the first character and last two characters of my username xforever1313.  I couldn't think of anything more creative, okay?
 
 License
 --------
