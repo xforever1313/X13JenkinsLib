@@ -57,7 +57,7 @@ void call( Map args )
             }
     };
 
-    String content = "{'chat_id': '${args["chatId"]}', 'text': '${escapedMessage}'}";
+    String content = "{'chat_id': ${args["chatId"]}, 'text': '${escapedMessage}'}";
     String tgUrl = "https://api.telegram.org/bot${args["botApiToken"]}/sendMessage";
 
     httpRequest(
