@@ -37,23 +37,16 @@
 ///
 /// \param chatId - Required.  The chat ID to send the message to.
 /// \param botApiToken - Required.  The bot's API token.
-/// \param failBuildOnBadResponse - Defaulted to "false".  Set to true to fail a build the HTTP request fails.
 void call( Map args )
 {
     X13NotNull( args["message"], "message" );
     X13NotNull( args["chatId"], "chatId" );
     X13NotNull( args["botApiToken"], "botApiToken" );
 
-    if( args["failBuildOnBadResponse"] == null )
-    {
-        args["failBuildOnBadResponse"] = false;
-    }
-
     String escapedMessage = "";
     args["message"].each
     {
         ch ->
-        {
             if( ch == '\'' )
             {
                 escapedMessage += "\\'";
@@ -62,7 +55,6 @@ void call( Map args )
             {
                 escapedMessage += ch;
             }
-        }
     };
 
     String content = "{'chat_id': '${args["chatId"]}', 'text': '${escapedMessage}'}";
@@ -74,6 +66,6 @@ void call( Map args )
         ignoreSslErrors: true,
         requestBody: content,
         responseHandle: "NONE",
-        url: "https://api.telegram.org/bot${args["botApiToken"]}/METHOD_NAME"
+        url: "https://api.telegram.org/bot${args["botApiToken"]}/sendMessage"
     );
 }
