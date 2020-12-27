@@ -59,13 +59,15 @@ void call( Map args )
 
     String content = "{'chat_id': '${args["chatId"]}', 'text': '${escapedMessage}'}";
 
-    httpRequest(
-        consoleLogResponseBody: true,
-        contentType: "APPLICATION_JSON",
-        httpMode: "POST",
-        ignoreSslErrors: true,
-        requestBody: content,
-        responseHandle: "NONE",
-        url: "https://api.telegram.org/bot${args["botApiToken"]}/sendMessage"
-    );
+    echo content;
+
+   // httpRequest(
+   //     consoleLogResponseBody: true,
+   //     contentType: "APPLICATION_JSON",
+   //     httpMode: "POST",
+   //     ignoreSslErrors: true,
+   //     requestBody: content,
+   //     responseHandle: "NONE",
+   //     url: "https://api.telegram.org/bot${args["botApiToken"]}/sendMessage"
+   // );
 }
