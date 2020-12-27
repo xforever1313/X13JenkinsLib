@@ -30,7 +30,7 @@
 ///            It is strongly recommended that the chatId and botApiToken are wrapped in a withCredentials
 ///            call somehow so they are hidden in logs.  I personally have the botApiToken be username/password
 ///            with the username being the bot username, and the password being the API token.
-///            The chatId is Secret Text.
+///            The chatId is Secret Text.  X13SendToTelegramWithCredentials does just this.
 ///
 /// \param message - Required.  The message to send to the Telegram group or channel.
 ///                  This can be markdown if your group supports that.
@@ -58,16 +58,15 @@ void call( Map args )
     };
 
     String content = "{'chat_id': '${args["chatId"]}', 'text': '${escapedMessage}'}";
+    String tgUrl = "https://api.telegram.org/bot${args["botApiToken"]}/sendMessage";
 
-    echo content;
-
-   // httpRequest(
-   //     consoleLogResponseBody: true,
-   //     contentType: "APPLICATION_JSON",
-   //     httpMode: "POST",
-   //     ignoreSslErrors: true,
-   //     requestBody: content,
-   //     responseHandle: "NONE",
-   //     url: "https://api.telegram.org/bot${args["botApiToken"]}/sendMessage"
-   // );
+    httpRequest(
+        consoleLogResponseBody: true,
+        contentType: "APPLICATION_JSON",
+        httpMode: "POST",
+        ignoreSslErrors: true,
+        requestBody: content,
+        responseHandle: "NONE",
+        url: tgUrl
+    );
 }
