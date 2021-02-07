@@ -14,13 +14,11 @@ def call( Map args )
 {
     X13NotNull( args["credsId"], "credsId" );
 
-    String passwordVar = "X13_DOCKER_LOGIN_PASSWORD";
-
     withCredentials(
         [usernamePassword(
             credentialsId: args["credsId"],
             usernameVariable: "X13_DOCKER_LOGIN_USERNAME",
-            passwordVarialbe: passwordVar
+            passwordVariable: "X13_DOCKER_LOGIN_PASSWORD"
         )]
     )
     {
