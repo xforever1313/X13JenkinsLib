@@ -29,7 +29,7 @@ def call( Map args )
         }
         else
         {
-            bat "echo %X13_DOCKER_LOGIN_PASSWORD% | ${dockerCommand}"
+            bat "echo %X13_DOCKER_LOGIN_PASSWORD% | ${dockerCommand}";
         }
     }
 }
