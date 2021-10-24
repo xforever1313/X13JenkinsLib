@@ -9,14 +9,37 @@
 ///          this calls "sh" while on a Windows system,
 ///          this calls "bat".
 ///
-def call( String command )
+/// \param command - The command to run in the shell.
+/// \param label - Label to be displayed in the pipeline step view.
+/// \param returnStdOut - If set to true,
+///                       standard output from the task is returned
+///                       as a string.
+def call(
+    String command,
+    String label = null,
+    boolean returnStdout = false
+)
 {
-    if( isUnix() )
+    if( returnStdout )
     {
-        sh command;
+        if ( isUnix() )
+        {
+            return sh( script: command, label: label, returnStdout: true );
+        }
+        else
+        {
+            return bat( script: command, label: label, returnStdout: true );
+        }
     }
     else
     {
-        bat command;
+        if( isUnix() )
+        {
+            sh( script: command, label: label );
+        }
+        else
+        {
+            bat( script: command, label: label );
+        }
     }
 }

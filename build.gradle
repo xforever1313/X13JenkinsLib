@@ -1,0 +1,43 @@
+plugins
+{
+    id 'groovy'
+}
+
+repositories
+{
+    maven { url 'https://repo.jenkins-ci.org/releases/' }
+    mavenCentral()
+}
+
+dependencies
+{
+    // Use the same version of Groovy that Jenkins has installed.
+    // To do this:
+    // - Open Jenkins
+    // - Manager Jenkins -> Manager Nodes -> Master -> Script Console
+    // - Execute the following code: 
+    //       println GroovySystem.version
+    // - Paste the version at the end of this string after the last ':'.
+    implementation "org.codehaus.groovy:groovy-all:2.4.12"
+    testImplementation "junit:junit:4.11"
+    testImplementation "com.lesfurets:jenkins-pipeline-unit:1.9"
+}
+
+
+sourceSets
+{
+    main
+    {
+        groovy
+        {
+            srcDirs = ['vars']
+        }
+    }
+    test
+    {
+        groovy
+        {
+            srcDirs = ['test']
+        }
+    }
+}

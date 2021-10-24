@@ -17,6 +17,12 @@ What does X13 mean?
 
 Its the first character and last two characters of my username xforever1313.  I couldn't think of anything more creative, okay?
 
+Running Unit Tests
+--------
+* Install a version of Java.  OpenJDK is recommended.  If on Windows, this can be installed with Chocolatey ```choco install openjdk11 -y```.
+* Install Gradle.  If on Windows, this can be installed with Chocolate ```choco install gradle -y```.
+
+
 License
 --------
 
