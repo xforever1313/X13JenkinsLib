@@ -23,8 +23,10 @@ class X13NotNullTests extends BasePipelineTest
         super.setUp();
         def library = library()
             .name( "X13JenkinsLib" )
+            .defaultVersion( "<notNeeded>" )
             .allowOverride( true )
             .implicit( true )
+            .targetPath( "<notNeeded>" )
             .retriever( projectSource() )
             .build();
 
@@ -37,13 +39,27 @@ class X13NotNullTests extends BasePipelineTest
     void NullCausesErrorWithNameSpecifiedTest() throws Exception
     {
         def thing = null;
-        X13NotNull( thing, "thing" );
+        library.X13NotNull( thing, "thing" );
     }
 
     @Test
     void NullCausesErrorWithoutNameSpecifiedTest() throws Exception
     {
         def thing = null;
+        X13NotNull( thing );
+    }
+
+    @Test
+    void NotNullDoesNotCauseErrorTest() throws Exception
+    {
+        def thing = "Hello";
+        X13NotNull( thing, "thing" );
+    }
+
+    @Test
+    void NotNullDoesNotCauseErrorWithoutNameSpecifiedTest() throws Exception
+    {
+        def thing = "hello";
         X13NotNull( thing );
     }
 }
