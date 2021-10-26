@@ -8,29 +8,22 @@
 package net.shendrick.X13JenkinsLib.test
 
 import com.lesfurets.jenkins.unit.BasePipelineTest
-import static com.lesfurets.jenkins.unit.global.lib.LibraryConfiguration.library
-import static com.lesfurets.jenkins.unit.global.lib.ProjectSource.projectSource
 import org.junit.*
 
 class X13NotNullTests extends BasePipelineTest
 {
-    // ---------------- Setup / Teardown ----------------
+   // ---------------- Fields ----------------
+
+   def uut;
+
+   // ---------------- Setup / Teardown ----------------
 
     @Override
     @Before
     void setUp() throws Exception
     {
         super.setUp();
-        def library = library()
-            .name( "X13JenkinsLib" )
-            .defaultVersion( "<notNeeded>" )
-            .allowOverride( true )
-            .implicit( true )
-            .targetPath( "<notNeeded>" )
-            .retriever( projectSource() )
-            .build();
-
-        helper.registerSharedLibrary( library );
+        this.uut = loadScript( "vars/X13NotNull.groovy" );
     }
 
     // ---------------- Tests ----------------
@@ -38,28 +31,53 @@ class X13NotNullTests extends BasePipelineTest
     @Test
     void NullCausesErrorWithNameSpecifiedTest() throws Exception
     {
+        // Setup
         def thing = null;
-        library.X13NotNull( thing, "thing" );
+
+        // Act
+        this.uut.call( thing, "thing" );
+
+        // Check
+        assertJobStatusFailure();
     }
 
     @Test
     void NullCausesErrorWithoutNameSpecifiedTest() throws Exception
     {
+        // Setup
         def thing = null;
-        X13NotNull( thing );
+
+        // Act
+        this.uut.call( thing );
+
+        // Check
+        assertJobStatusFailure();
     }
 
     @Test
     void NotNullDoesNotCauseErrorTest() throws Exception
     {
+        // Setup
         def thing = "Hello";
-        X13NotNull( thing, "thing" );
+
+        // Act
+        this.uut.call( thing, "thing" );
+
+        // Check
+        assertJobStatusSuccess();
     }
 
     @Test
     void NotNullDoesNotCauseErrorWithoutNameSpecifiedTest() throws Exception
     {
+        // Setup
         def thing = "hello";
-        X13NotNull( thing );
+
+        // Act
+        this.uut.call( thing );
+
+        // Check
+        assertJobStatusSuccess();
     }
 }
+
