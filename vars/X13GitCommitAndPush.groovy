@@ -23,11 +23,11 @@ void call( Map args )
 
     dir( checkoutFolder )
     {
-        X13Cmd "git config --local user.name '${args["userName"]}' && git config --local user.email '${args["email"]}'";
-        X13Cmd "git commit -a -m '${args["message"]}'";
+        X13Cmd( "git config --local user.name '${args["userName"]}' && git config --local user.email '${args["email"]}'" );
+        X13Cmd( "git commit -a -m '${args["message"]}'" );
         sshagent(credentials: [args["credentials"]])
         {
-            X13Cmd "git push";
+            X13Cmd( "git push" );
         }
     }
 }
