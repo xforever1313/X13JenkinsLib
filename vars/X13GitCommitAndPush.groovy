@@ -21,7 +21,7 @@ void call( Map args )
     X13NotNull( args["credentials"], "credentials" );
     X13NotNull( args["message"], "message" );
 
-    dir( checkoutFolder )
+    dir( args["checkoutFolder"] )
     {
         X13Cmd( "git config --local user.name '${args["userName"]}' && git config --local user.email '${args["email"]}'" );
         X13Cmd( "git commit -a -m '${args["message"]}'" );
