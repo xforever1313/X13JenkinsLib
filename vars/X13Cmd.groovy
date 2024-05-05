@@ -16,22 +16,6 @@
 ///                       as a string.  This takes precedence over returnStatus.
 /// \param returnStatus - If set to true, the exit code is returned from this method.
 ///                       If set to false, the job will fail if the exit code is not zero.
-def call( String command, Map args )
-{
-    call( command, args.label, args.returnStdout, args.returnStatus );
-}
-
-/// \brief - Runs a command on any operating system.  If a Unix system,
-///          this calls "sh" while on a Windows system,
-///          this calls "bat".
-///
-/// \param command - The command to run in the shell.
-/// \param label - Label to be displayed in the pipeline step view.
-/// \param returnStdOut - If set to true,
-///                       standard output from the task is returned
-///                       as a string.  This takes precedence over returnStatus.
-/// \param returnStatus - If set to true, the exit code is returned from this method.
-///                       If set to false, the job will fail if the exit code is not zero.
 def call(
     String command,
     String label = null,
