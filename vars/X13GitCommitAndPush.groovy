@@ -24,6 +24,13 @@ void call( Map args )
     dir( args["checkoutFolder"] )
     {
         X13Cmd( "git config --local user.name '${args["userName"]}' && git config --local user.email '${args["email"]}'" );
+        def statusCode = X13Cmd( "git diff --quiet", returnStatus: true );
+        if( statusCode == 1 )
+        {
+            println( "No changes to commit, returning." );
+            return;
+        }
+
         X13Cmd( "git commit -a -m '${args["message"]}'" );
         sshagent(credentials: [args["credentials"]])
         {
