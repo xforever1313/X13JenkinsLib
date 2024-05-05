@@ -24,7 +24,7 @@ void call( Map args )
     dir( args["checkoutFolder"] )
     {
         X13Cmd( "git config --local user.name '${args["userName"]}' && git config --local user.email '${args["email"]}'" );
-        def statusCode = X13Cmd( command: "git diff --quiet", null, false, true );
+        def statusCode = X13Cmd( "git diff --quiet", null, false, true );
         if( statusCode == 1 )
         {
             println( "No changes to commit, returning." );
